@@ -21,7 +21,7 @@ async fn post_index(){
 }
 
 async fn fun(){
-    println!("jail to bengalis");
+    println!("eating pizza");
 }
 
 
