@@ -8,7 +8,7 @@ use tokio::net::TcpListener;
 async fn main(){
 
 let app = Router::new().route("/",get(get_index).post(post_index))
-.route("/fun",get(fun));
+.route("/fun",get(test));
 
 
 
@@ -20,8 +20,12 @@ async fn post_index(){
     println!("if this gets triggered then we r cooked");
 }
 
-async fn fun(){
-    println!("jail to bengalis");
+async fn test(){
+    println!("test is working fine...");
+}
+
+async fn new_test(){
+    println!("just learnig git");
 }
 
 
