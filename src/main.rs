@@ -1,32 +1,16 @@
-use axum::{
-    routing::get, Router
-};
 use tokio::net::TcpListener;
-
-
+mod route_fn;
+use route_fn::route;
+mod routes;
 #[tokio::main]
 async fn main(){
 
-let app = Router::new().route("/",get(get_index).post(post_index))
-.route("/fun",get(test));
+let app=route();
 
 
 
-async fn get_index(){
-    println!("get index got triggered");
-}
 
-async fn post_index(){
-    println!("if this gets triggered then we r cooked");
-}
 
-async fn test(){
-    println!("test is working fine...");
-}
-
-async fn new_test(){
-    println!("just learnig git");
-}
 
 
 let listener = TcpListener::bind("0.0.0.0:3000").await.unwrap();
