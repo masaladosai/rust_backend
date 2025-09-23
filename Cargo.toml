@@ -5,5 +5,5 @@ edition = "2024"
 
 [dependencies]
 axum = { version = "0.8.4", features = ["http2", "macros", "ws"] }
-serde = { version = "1.0.225", features = ["serde_derive"] }
+serde = { version = "1.0.225", features = ["derive", "serde_derive"] }
 tokio = { version = "1.47.1", features = ["full"] }
