@@ -64,3 +64,26 @@ pub async fn get_users(
 
     Ok(Json(all_users))
 }
+
+
+
+#[derive(Serialize)]
+pub struct Frontend_resp{
+    pub name:String,
+    pub id:Uuid
+}
+
+
+pub async fn get_special_users(State(db):State<DatabaseConnection>)->Result<Json<Vec<Frontend_resp>>,(StatusCode,String)>{
+    let users_data= UserEntity::find().all(&db).await.map_err(|db_err|(StatusCode::INTERNAL_SERVER_ERROR,format!("error in db:{}",db_err)))?;
+
+    let mut final_resp:Vec<Frontend_resp>=Vec::new();
+    for x in users_data.into_iter(){
+        final_resp.push(
+            Frontend_resp {name: x.name ,id: x.id}
+        );
+    };
+
+    Ok(Json(final_resp))
+
+}

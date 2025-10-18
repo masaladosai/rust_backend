@@ -1,6 +1,6 @@
 use crate::routes::index::{get_index, post_index};
 use crate::routes::login::{login, sign_up};
-use crate::routes::users::{create_user,get_users,del_users};
+use crate::routes::users::{create_user, del_users, get_special_users,get_users};
 use axum::routing::delete;
 use axum::{
     routing::{get,post}, Router
@@ -15,5 +15,6 @@ pub fn route(db:DatabaseConnection)->Router{
     .route("/login",get(login))
     .route("/signup",post(sign_up))
     .route("/users",post(create_user))
-    .route("/users/get_users",get(get_users)).route("/users/{user_id}",delete(del_users)).with_state(db)
+    .route("/users/get_users",get(get_users)).route("/users/{user_id}",delete(del_users))
+    .route("/get_all_users",get(get_special_users)).with_state(db)
 }
